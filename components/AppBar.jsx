@@ -6,6 +6,9 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import MenuIcon from '@material-ui/icons/Menu';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import Tooltip from '@material-ui/core/Tooltip';
+
 import { useThemeContextProvider } from './Providers/Theme';
 
 const useStyles = makeStyles({
@@ -13,6 +16,9 @@ const useStyles = makeStyles({
     marginLeft: 5,
     flexGrow: 1,
   },
+  icon: {
+    marginRight: 15,
+  }
 });
 
 export default function Navigation() {
@@ -23,12 +29,17 @@ export default function Navigation() {
       <Toolbar>
         <MenuIcon />
         <Typography variant="h6" className={classes.title}>
-     Theme generator
+          Theme generator
         </Typography>
-        { getType() ? 
-        <Brightness7Icon onClick={() => toggleType() } /> : 
-        <Brightness4Icon onClick={() => toggleType() }  />
-        }
+        <Tooltip title="Toggle dark/light theme">
+          {getType() ?
+            <Brightness7Icon className={classes.icon} onClick={() => toggleType()} /> :
+            <Brightness4Icon className={classes.icon} onClick={() => toggleType()} />
+          }
+        </Tooltip>
+        <Tooltip title="Open in GitHub">
+          <GitHubIcon onClick={() => { window.location.href = "https://github.com/jagribble/MateralUITheme" }} />
+        </Tooltip>
       </Toolbar>
     </AppBar>
   );
