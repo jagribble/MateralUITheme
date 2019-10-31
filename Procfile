@@ -1,1 +1,1 @@
-web: webpack --config src/webpack.prod.config.js && node ./src/bin/www
+web: webpack --config webpack.prod.config.js && node ./bin/www
