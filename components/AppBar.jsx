@@ -6,28 +6,33 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import MenuIcon from '@material-ui/icons/Menu';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
-import GitHubIcon from '@material-ui/icons/GitHub';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import { useThemeContextProvider } from './Providers/Theme';
+import Menu from './MenuDrawer';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   title: {
     marginLeft: 5,
     flexGrow: 1,
   },
   icon: {
     marginRight: 15,
-  }
-});
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
+}));
 
-export default function Navigation() {
+export default function Navigation(props) {
+  const { clipped = false, rightToolbar = <></>, menuItems, open, handleDrawerToggle } = props;
   const classes = useStyles();
   const { toggleType, getType } = useThemeContextProvider();
   return (
-    <AppBar position="fixed" color="default">
+    <>
+    <AppBar position="fixed" color="default" className={ clipped ? classes.appBar: ''}>
       <Toolbar>
-        <MenuIcon />
+        <MenuIcon onClick={handleDrawerToggle}/>
         <Typography variant="h6" className={classes.title}>
           Theme generator
         </Typography>
@@ -37,10 +42,10 @@ export default function Navigation() {
             <Brightness4Icon className={classes.icon} onClick={() => toggleType()} />
           }
         </Tooltip>
-        <Tooltip title="Open in GitHub">
-          <GitHubIcon onClick={() => { window.location.href = "https://github.com/jagribble/MateralUITheme" }} />
-        </Tooltip>
+        {rightToolbar}
       </Toolbar>
     </AppBar>
+    <Menu menuItems={menuItems} open={open} handleDrawerToggle={handleDrawerToggle}/>
+    </>
   );
 }

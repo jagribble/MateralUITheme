@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
+import {  makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
@@ -11,11 +11,11 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import { useThemeContextProvider } from './Providers/Theme';
 import { SketchPicker } from 'react-color';
-
-import AppBar from './AppBar';
 
 const useStyles = makeStyles({
   card: {
@@ -52,8 +52,6 @@ export default function App() {
   \`\`\`
   `;
   return (
-    <ThemeProvider theme={getTheme()}>
-      <AppBar />
       <Card className={classes.card}>
         <Markdown source={source} />
         <Typography color="primary" variant="h4">Primary</Typography>
@@ -62,7 +60,7 @@ export default function App() {
             <SketchPicker color={getPrimary()} onChangeComplete={(c) => setPrimary(c.hex)} />
           </Grid>
           <Grid item xs={12} sm>
-            <Grid container spacing={16} justify="space-evenly" direction="column">
+            <Grid container spacing={10} justify="space-evenly" direction="column">
               <Grid item className={classes.demos}>
                 <Button variant="contained" color="primary">Primary</Button>
               </Grid>
@@ -97,7 +95,7 @@ export default function App() {
             <SketchPicker color={getSecondary()} onChangeComplete={(c) => setSecondary(c.hex)} />
           </Grid>
           <Grid item xs={12} sm>
-            <Grid container spacing={16} justify="space-evenly" direction="column">
+            <Grid container spacing={10} justify="space-evenly" direction="column">
               <Grid item className={classes.demos}>
                 <Button variant="contained" color="secondary">Secondary</Button>
               </Grid>
@@ -133,7 +131,7 @@ export default function App() {
             <SketchPicker color={getError()} onChangeComplete={(c) => setError(c.hex)} />
           </Grid>
           <Grid item xs={12} sm>
-            <Grid container spacing={16} justify="space-evenly" direction="column">
+            <Grid container spacing={10} justify="space-evenly" direction="column">
               <Grid item className={classes.demos}>
                 <Card className={classes.card} raised>
                   <Typography color="error">This is some error text</Typography>
@@ -146,6 +144,5 @@ export default function App() {
           </Grid>
         </Grid>
       </Card>
-    </ThemeProvider>
   );
 }
