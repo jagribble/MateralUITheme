@@ -25,14 +25,14 @@ export default function Root(){
                     <Tooltip title="Open in GitHub">
                       <GitHubIcon onClick={() => { window.location.href = "https://github.com/jagribble/MateralUITheme" }} />
                     </Tooltip>}
-                    menuItems={[]}
+                    menuItems={[{title: 'Home', path: '/'}, {title: 'About', path: '/about'}]}
                     open={open}
                     handleDrawerToggle={() => setOpen(!open)}
                     {...p}
                   />
             )} />
             <Switch>
-                <Route path="/" render={p => <Theme {...p}/>}/>
+                <Route path="/" exact render={p => <Theme {...p}/>}/>
             </Switch>
         </Router>
         </ThemeProvider>
