@@ -11,6 +11,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import Theme from './Theme';
 import AppBar from './AppBar';
 import { useThemeContextProvider } from './Providers/Theme';
+import Container from './Container';
 
 export default function Root(){
     const [open, setOpen] = React.useState(false);
@@ -32,7 +33,7 @@ export default function Root(){
                   />
             )} />
             <Switch>
-                <Route path="/" exact render={p => <Theme {...p}/>}/>
+                <Route path="/" exact render={p => (<Container open={open}><Theme {...p}/></Container>)}/>
             </Switch>
         </Router>
         </ThemeProvider>
