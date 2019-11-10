@@ -12,6 +12,7 @@ import Theme from './Theme';
 import AppBar from './AppBar';
 import { useThemeContextProvider } from './Providers/Theme';
 import Container from './Container';
+import About from './About';
 
 export default function Root(){
     const [open, setOpen] = React.useState(false);
@@ -34,6 +35,7 @@ export default function Root(){
             )} />
             <Switch>
                 <Route path="/" exact render={p => (<Container open={open}><Theme {...p}/></Container>)}/>
+                <Route path="/about" exact render={p => (<Container open={open}><About {...p}/></Container>)}/>
             </Switch>
         </Router>
         </ThemeProvider>

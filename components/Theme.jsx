@@ -11,8 +11,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import Tooltip from '@material-ui/core/Tooltip';
+import isMobile from 'is-mobile';
 
 import { useThemeContextProvider } from './Providers/Theme';
 import { SketchPicker } from 'react-color';
@@ -21,6 +20,10 @@ const useStyles = makeStyles({
   card: {
     margin: 10,
     padding: 10,
+  },
+  cardMobile: {
+    margin: 5,
+    padding:10,
   },
   demos: {
     margin: '5px 0px',
@@ -52,11 +55,11 @@ export default function App() {
   \`\`\`
   `;
   return (
-      <Card className={classes.card}>
+      <Card className={isMobile ? classes.cardMobile : classes.card}>
         <Markdown source={source} />
         <Typography color="primary" variant="h4">Primary</Typography>
         <Grid container>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={4}>
             <SketchPicker color={getPrimary()} onChangeComplete={(c) => setPrimary(c.hex)} />
           </Grid>
           <Grid item xs={12} sm>
@@ -91,7 +94,7 @@ export default function App() {
         </Grid>
         <Typography color="secondary" variant="h4">Secondary</Typography>
         <Grid container>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={4}>
             <SketchPicker color={getSecondary()} onChangeComplete={(c) => setSecondary(c.hex)} />
           </Grid>
           <Grid item xs={12} sm>
@@ -127,7 +130,7 @@ export default function App() {
 
         <Typography color="error" variant="h4">Error</Typography>
         <Grid container>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={4}>
             <SketchPicker color={getError()} onChangeComplete={(c) => setError(c.hex)} />
           </Grid>
           <Grid item xs={12} sm>

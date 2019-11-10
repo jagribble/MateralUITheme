@@ -11,13 +11,16 @@ const useStyles = makeStyles(theme => ({
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.leavingScreen,
         }), 
+        marginTop: 50,
         marginLeft: 0,
       },
       contentShift: {
+        padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
           easing: theme.transitions.easing.easeOut,
           duration: theme.transitions.duration.enteringScreen,
         }),
+        marginTop: 50,
         marginLeft: drawerWidth,
       },
 }));
